@@ -57,7 +57,7 @@ JOIN Sal s ON t.salID = s.salID
 JOIN Treningssenter ts ON s.senterID = ts.senterID
 LEFT JOIN Instruktor i ON t.instruktorID = i.instruktorID
 WHERE t.startTidspunkt >= '2026-03-16'
-  AND t.startTidspunkt < '2026-03-23'
+  AND t.startTidspunkt <= '2026-03-23 23:59'
 ORDER BY t.startTidspunkt;
 
 

@@ -197,7 +197,7 @@ def brukstilfelle_4(start_dato, slutt_dato):
         JOIN Sal s ON t.salID = s.salID
         JOIN Treningssenter ts ON s.senterID = ts.senterID
         LEFT JOIN Instruktor i ON t.instruktorID = i.instruktorID
-        WHERE t.startTidspunkt >= ? AND t.startTidspunkt < ?
+        WHERE t.startTidspunkt >= ? AND t.startTidspunkt <= ? || ' 23:59'
         ORDER BY t.startTidspunkt
     """, (start_dato, slutt_dato))
 
