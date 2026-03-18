@@ -380,62 +380,168 @@ def brukstilfelle_8():
     conn.close()
 
 
-def main():
-    """Hovedprogram – kjører alle brukstilfeller i rekkefølge."""
+def kjor_demo():
+    """Kjører alle brukstilfeller automatisk med eksempeldata (for sensor)."""
+    print("=" * 60)
+    print("  Kjører alle brukstilfeller med eksempeldata...")
+    print("=" * 60)
+    print()
+
+    # 1. Initialiser
+    init_database()
+
+    # 2. Booking
+    brukstilfelle_2("johnny@stud.ntnu.no", "Spin60", "2026-03-17 18:30")
+    print()
+
+    # 3. Oppmøte (treningsID 11 = Spin60 ti 18:30 Øya)
+    brukstilfelle_3("johnny@stud.ntnu.no", 11)
+    print()
+
+    # 4. Ukeplan uke 12
+    brukstilfelle_4("2026-03-16", "2026-03-23")
+
+    # 5. Besøkshistorie
+    brukstilfelle_5("johnny@stud.ntnu.no", "2026-01-01")
+
+    # 6. Svartelisting
+    brukstilfelle_6("johnny@stud.ntnu.no")
+    print("  Forsøker ny booking etter svartelisting:")
+    brukstilfelle_2("johnny@stud.ntnu.no", "Spin30", "2026-03-18 07:00")
+    print()
+
+    # 7. Flest fellestreninger
+    brukstilfelle_7(2026, 3)
+
+    # 8. Treningspartnere
+    brukstilfelle_8()
+
+
+def vis_meny():
+    """Viser hovedmenyen."""
+    print()
+    print("=" * 50)
+    print("  TreningDB – Hovedmeny")
+    print("=" * 50)
+    print("  0. Initialiser database (slett og opprett på nytt)")
+    print("  1. Sett inn data (brukstilfelle 1)")
+    print("  2. Book trening")
+    print("  3. Registrer oppmøte")
+    print("  4. Vis ukeplan")
+    print("  5. Vis besøkshistorie")
+    print("  6. Svartelisting")
+    print("  7. Flest fellestreninger")
+    print("  8. Treningspartnere")
+    print("  d. Kjør demo (alle brukstilfeller automatisk)")
+    print("  q. Avslutt")
+    print("=" * 50)
+
+
+def interaktiv_meny():
+    """Interaktivt terminalgrensesnitt der bruker velger brukstilfelle."""
     print("=" * 60)
     print("  TDT4145 Prosjekt: TreningDB – Del 2")
     print("  Gruppe 66")
     print("=" * 60)
-    print()
 
-    # 1. Initialiser databasen
-    init_database()
+    while True:
+        vis_meny()
+        valg = input("  Velg (0-8, d, q): ").strip().lower()
 
-    # 2. Booking: Spin60, tirsdag 17. mars kl 18:30, Øya, johnny
-    brukstilfelle_2(
-        epost="johnny@stud.ntnu.no",
-        aktivitetsnavn="Spin60",
-        tidspunkt="2026-03-17 18:30"
-    )
-    print()
+        if valg == 'q':
+            print("  Ha det!")
+            break
 
-    # 3. Registrering av oppmøte for treningen i brukstilfelle 2
-    #    Trening 11 = Spin60 ti 18:30 Øya (se insert_data.sql)
-    brukstilfelle_3(
-        epost="johnny@stud.ntnu.no",
-        treningsID=11
-    )
-    print()
+        elif valg == 'd':
+            kjor_demo()
 
-    # 4. Ukeplan for uke 12 (16. mars – 23. mars)
-    brukstilfelle_4(
-        start_dato="2026-03-16",
-        slutt_dato="2026-03-23"
-    )
+        elif valg == '0':
+            init_database()
 
-    # 5. Besøkshistorie for Johnny siden 1. januar 2026
-    brukstilfelle_5(
-        epost="johnny@stud.ntnu.no",
-        fra_dato="2026-01-01"
-    )
+        elif valg == '1':
+            if not os.path.exists(DB_FILE) or os.path.getsize(DB_FILE) == 0:
+                init_database()
+            else:
+                print("  Database finnes allerede. Bruk 0 for å nullstille først.")
 
-    # 6. Svartelisting av Johnny
-    brukstilfelle_6(epost="johnny@stud.ntnu.no")
+        elif valg == '2':
+            epost = input("  Epost (standard: johnny@stud.ntnu.no): ").strip()
+            if not epost:
+                epost = "johnny@stud.ntnu.no"
+            aktivitet = input("  Aktivitetsnavn (standard: Spin60): ").strip()
+            if not aktivitet:
+                aktivitet = "Spin60"
+            tidspunkt = input("  Tidspunkt YYYY-MM-DD HH:MM (standard: 2026-03-17 18:30): ").strip()
+            if not tidspunkt:
+                tidspunkt = "2026-03-17 18:30"
+            brukstilfelle_2(epost, aktivitet, tidspunkt)
 
-    # Vis at Johnny nå ikke kan booke
-    print("  Forsøker ny booking etter svartelisting:")
-    brukstilfelle_2(
-        epost="johnny@stud.ntnu.no",
-        aktivitetsnavn="Spin30",
-        tidspunkt="2026-03-18 07:00"
-    )
-    print()
+        elif valg == '3':
+            epost = input("  Epost (standard: johnny@stud.ntnu.no): ").strip()
+            if not epost:
+                epost = "johnny@stud.ntnu.no"
+            try:
+                tid = input("  TreningsID (standard: 11): ").strip()
+                treningsID = int(tid) if tid else 11
+            except ValueError:
+                print("  Ugyldig treningsID.")
+                continue
+            brukstilfelle_3(epost, treningsID)
 
-    # 7. Flest fellestreninger i mars 2026
-    brukstilfelle_7(aar=2026, maaned=3)
+        elif valg == '4':
+            start = input("  Startdato YYYY-MM-DD (standard: 2026-03-16): ").strip()
+            if not start:
+                start = "2026-03-16"
+            slutt = input("  Sluttdato YYYY-MM-DD (standard: 2026-03-23): ").strip()
+            if not slutt:
+                slutt = "2026-03-23"
+            brukstilfelle_4(start, slutt)
 
-    # 8. Treningspartnere
-    brukstilfelle_8()
+        elif valg == '5':
+            epost = input("  Epost (standard: johnny@stud.ntnu.no): ").strip()
+            if not epost:
+                epost = "johnny@stud.ntnu.no"
+            fra = input("  Fra dato YYYY-MM-DD (standard: 2026-01-01): ").strip()
+            if not fra:
+                fra = "2026-01-01"
+            brukstilfelle_5(epost, fra)
+
+        elif valg == '6':
+            epost = input("  Epost (standard: johnny@stud.ntnu.no): ").strip()
+            if not epost:
+                epost = "johnny@stud.ntnu.no"
+            brukstilfelle_6(epost)
+
+        elif valg == '7':
+            try:
+                aar_str = input("  År (standard: 2026): ").strip()
+                aar = int(aar_str) if aar_str else 2026
+                mnd_str = input("  Måned 1-12 (standard: 3): ").strip()
+                maaned = int(mnd_str) if mnd_str else 3
+            except ValueError:
+                print("  Ugyldig input.")
+                continue
+            brukstilfelle_7(aar, maaned)
+
+        elif valg == '8':
+            brukstilfelle_8()
+
+        else:
+            print("  Ugyldig valg. Prøv igjen.")
+
+
+def main():
+    """
+    Hovedprogram.
+    Bruk:
+      python main.py        → Interaktiv meny
+      python main.py demo   → Kjør alle brukstilfeller automatisk
+    """
+    import sys
+    if len(sys.argv) > 1 and sys.argv[1] == "demo":
+        kjor_demo()
+    else:
+        interaktiv_meny()
 
 
 if __name__ == "__main__":

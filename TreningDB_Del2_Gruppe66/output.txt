@@ -1,6 +1,5 @@
 ============================================================
-  TDT4145 Prosjekt: TreningDB – Del 2
-  Gruppe 66
+  Kjører alle brukstilfeller med eksempeldata...
 ============================================================
 
 === Brukstilfelle 1 ===
