@@ -1,0 +1,89 @@
+============================================================
+  TDT4145 Prosjekt: TreningDB – Del 2
+  Gruppe 66
+============================================================
+
+=== Brukstilfelle 1 ===
+Database opprettet og data satt inn.
+
+=== Brukstilfelle 2: Booking av trening ===
+  Bruker:     johnny@stud.ntnu.no
+  Aktivitet:  Spin60
+  Tidspunkt:  2026-03-17 18:30
+  Booking bekreftet for johnny@stud.ntnu.no: Spin60 (Øya) 2026-03-17 18:30, instruktør Marte.
+
+=== Brukstilfelle 3: Registrering av oppmøte ===
+  Bruker:      johnny@stud.ntnu.no
+  TreningsID:  11
+  Oppmøte registrert for johnny@stud.ntnu.no på Spin60 (treningsID 11).
+
+=== Brukstilfelle 4: Ukeplan ===
+  Periode: 2026-03-16 til 2026-03-23
+
+  Tidspunkt            Aktivitet          Var.   Instruktør   Senter       Sal                      Påmeldt
+  --------------------------------------------------------------------------------------------------------------
+  2026-03-16 07:00     Spin30             30     Tore         Øya          Spinningsal 1 Øya        2/25
+  2026-03-16 09:00     Spin60             60     Anders       Øya          Spinningsal 1 Øya        3/25
+  2026-03-16 10:00     Spin45             45     Kristian     Dragvoll     Spinningsal Dragvoll     1/18
+  2026-03-16 16:30     Spin45             45     Hedda        Øya          Spinningsal 1 Øya        2/25
+  2026-03-16 17:00     Spin60             60     Kristian     Dragvoll     Spinningsal Dragvoll     1/18
+  2026-03-16 18:00     SpinIntervall      45     Marte        Øya          Spinningsal 2 Øya        2/20
+  2026-03-16 20:00     SpinBike           45     Tore         Øya          Spinningsal 1 Øya        1/25
+  2026-03-17 07:00     Spin30             30     Anders       Øya          Spinningsal 1 Øya        1/25
+  2026-03-17 09:00     Spin30             30     Kristian     Dragvoll     Spinningsal Dragvoll     0/18
+  2026-03-17 10:00     Spin60             60     Hedda        Øya          Spinningsal 2 Øya        1/20
+  2026-03-17 16:00     SpinIntervall      45     Tore         Øya          Spinningsal 1 Øya        1/25
+  2026-03-17 17:30     Spin45             45     Kristian     Dragvoll     Spinningsal Dragvoll     1/18
+  2026-03-17 18:30     Spin60             60     Marte        Øya          Spinningsal 1 Øya        4/25
+  2026-03-17 20:00     Spin45             45     Anders       Øya          Spinningsal 2 Øya        1/20
+  2026-03-18 07:00     Spin30             30     Hedda        Øya          Spinningsal 1 Øya        3/25
+  2026-03-18 09:30     Spin60             60     Tore         Øya          Spinningsal 1 Øya        0/25
+  2026-03-18 10:00     Spin60             60     Kristian     Dragvoll     Spinningsal Dragvoll     0/18
+  2026-03-18 16:00     SpinBike           45     Marte        Øya          Spinningsal 2 Øya        0/20
+  2026-03-18 17:00     SpinIntervall      45     Kristian     Dragvoll     Spinningsal Dragvoll     0/18
+  2026-03-18 18:00     SpinIntervall      45     Anders       Øya          Spinningsal 1 Øya        3/25
+  2026-03-18 20:00     Spin45             45     Hedda        Øya          Spinningsal 2 Øya        1/20
+
+=== Brukstilfelle 5: Personlig besøkshistorie ===
+  Bruker:   johnny@stud.ntnu.no
+  Fra dato: 2026-01-01
+
+  Aktivitet          Senter       Dato/tid
+  --------------------------------------------------
+  Spin60             Øya          2026-03-16 09:00
+  SpinIntervall      Øya          2026-03-16 18:00
+  Spin60             Øya          2026-03-17 18:30
+  Spin30             Øya          2026-03-18 07:00
+  SpinIntervall      Øya          2026-03-18 18:00
+
+=== Brukstilfelle 6: Svartelisting ===
+  Bruker: johnny@stud.ntnu.no
+  Antall prikker siste 30 dager: 3
+  Bruker johnny@stud.ntnu.no er nå svartelistet (utestengt fra elektronisk booking).
+
+  Forsøker ny booking etter svartelisting:
+=== Brukstilfelle 2: Booking av trening ===
+  Bruker:     johnny@stud.ntnu.no
+  Aktivitet:  Spin30
+  Tidspunkt:  2026-03-18 07:00
+  FEIL: Bruker er svartelistet og kan ikke booke elektronisk.
+
+=== Brukstilfelle 7: Flest fellestreninger ===
+  Måned: 2026-03
+
+  Anna Nilsen (anna@stud.ntnu.no): 7 treninger
+
+=== Brukstilfelle 8: Treningspartnere ===
+
+  Bruker 1                     Bruker 2                     Felles treninger
+  ----------------------------------------------------------------------
+  johnny@stud.ntnu.no          ola@stud.ntnu.no             4
+  anna@stud.ntnu.no            johnny@stud.ntnu.no          3
+  anna@stud.ntnu.no            kari@stud.ntnu.no            2
+  anna@stud.ntnu.no            ola@stud.ntnu.no             2
+  johnny@stud.ntnu.no          lisa@stud.ntnu.no            2
+  lisa@stud.ntnu.no            ola@stud.ntnu.no             2
+  anna@stud.ntnu.no            lisa@stud.ntnu.no            1
+  anna@stud.ntnu.no            per@stud.ntnu.no             1
+  johnny@stud.ntnu.no          kari@stud.ntnu.no            1
+
