@@ -534,8 +534,8 @@ def main():
     """
     Hovedprogram.
     Bruk:
-      python main.py        → Interaktiv meny
-      python main.py demo   → Kjør alle brukstilfeller automatisk
+      python main.py        - Interaktiv meny
+      python main.py demo   - Kjør alle brukstilfeller automatisk
     """
     import sys
     if len(sys.argv) > 1 and sys.argv[1] == "demo":
