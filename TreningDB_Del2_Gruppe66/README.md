@@ -74,9 +74,3 @@ Ingen endringer er gjort i databaseskjemaet fra Del 1.
 - 8 brukere, 5 instruktører, 21 treninger
 - Fasiliteter og sykler satt inn for Øya treningssenter
 
-## Bruk av KI
-I arbeidet med Del 2 har vi brukt Claude (KI) som et hjelpeverktøy. Vi har brukt det
-til å strukturere Python-koden og diskutere valg rundt SQL-spørringer. Vi har
-gjennomgått og tilpasset all generert kode for å sikre at den samsvarer med
-databaseskjemaet fra Del 1 og oppgavekravene. Alle SQL-spørringer er verifisert
-mot forventet output.
